@@ -1,0 +1,23 @@
+clear all;
+close all;
+clc;
+format long;
+mu=[3.5426 3.3406 3.2675 3.4693];
+sigma=[0.109 0.095 0.097 0.107];
+ch1=normrnd(mu(1),sigma(1),[1 1e4]);
+ch2=normrnd(mu(2),sigma(2),[1 1e4]);
+ch3=normrnd(mu(3),sigma(3),[1 1e4]);
+ch4=normrnd(mu(4),sigma(4),[1 1e4]);
+histfit([ch1,ch2,ch3,ch4]);
+pd2=fitdist([ch1,ch2,ch3,ch4]','Normal');
+mu2=pd2.mu;
+sigma2=pd2.sigma*1e3;%in ps
+FWHM=sigma2*2*sqrt(2*log(2));
+xlim([2.8 4]);
+xlabel('ToA (ns)');
+ylabel('Counts (arb.)');
+l1=legend('Monte Carlo data','Fit');
+txt = {['Mean = ' num2str(mu2) ' ns'] , ['\sigma = ' num2str(sigma2) ' ps'], ['FWHM = ' num2str(FWHM) ' ps']};
+text(2.82,500,txt,'FontSize',12);
+l1.FontSize=12;
+set(gca,'FontSize',12);
