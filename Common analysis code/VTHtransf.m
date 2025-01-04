@@ -1,0 +1,10 @@
+clear all;
+close all;
+clc;
+format long;
+rf=1e3;
+rg=3*rf;
+vi=0:1.7:1800;
+vb=900;
+vo=(1+rf/rg)*vb-rf/rg*vi;
+plot(vi,vo);

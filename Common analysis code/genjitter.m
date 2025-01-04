@@ -1,0 +1,16 @@
+clear all;
+close all;
+clc;
+format long;
+%V=[189 379 569 759 949 120 240 360 481 601 82 164 247 329 411];
+V=[82 120 164 189 240 247 329 360 379 411 481 569 601 759 949];
+Vatt=V/(10^(1.5));
+%gensig=[23.7 20.3 21.1 17.2 14.4 57 24.1 20.2 23.1 19.7 140 56 24.1 21.5 19.6];
+gensig=[140 57 56 23.7 24.1 24.1 21.5 20.2 20.3 19.6 23.1 21.1 19.7 17.2 14.4];
+plot(Vatt,gensig,'LineStyle', '-','Color', 'r','LineWidth', 3,'Marker', '*', 'MarkerSize', 10);
+grid on;
+ylim([0 150]);
+yticks(0:10:150);
+xlabel('Input amplitude after attenuation (mV)');
+ylabel('\sigma_{t, signal generator} (ps)');
+set(gca,'FontSize',12);
